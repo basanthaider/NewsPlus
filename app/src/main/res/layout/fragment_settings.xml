@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,6 +8,7 @@
     tools:context=".ui.fragments.SettingsFragment">
 
     <TextView
+        android:id="@+id/settings_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Settings."
@@ -16,21 +17,26 @@
         android:textColor="@color/meintGreen"
         android:textStyle="bold"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
+            android:id="@+id/country_tv"
             android:paddingHorizontal="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingVertical="16dp"
-            android:text="choose Country"/>
+            android:text="Choose country news."
+            app:layout_constraintTop_toBottomOf="@id/settings_tv"/>
 
         <RadioGroup
             android:id="@+id/rb_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checkedButton="@id/us_rb">
+            android:checkedButton="@id/us_rb"
+            app:layout_constraintTop_toBottomOf="@id/country_tv">
 
             <RadioButton
                 android:id="@+id/us_rb"
@@ -50,28 +56,56 @@
                 android:layout_height="wrap_content"
                 android:text="Egypty" />
 
+            <RadioButton
+                android:id="@+id/ae_rb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="United Arab Emirates"/>
+
+            <RadioButton
+                android:id="@+id/ca_rb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Canada"/>
+
+
+
         </RadioGroup>
 
         <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/round_tip_ms"
+            android:id="@+id/darkmood_ms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="true"
             android:padding="18dp"
             android:text="Dark mood"
-            app:thumbIcon="@drawable/dark_mode"/>
+            app:thumbIcon="@drawable/dark_mode"
+            app:layout_constraintTop_toBottomOf="@id/rb_group"
+            android:layout_marginBottom="18dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/apply_changes_mbtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Apply settings"
+        app:cornerRadius="16dp"
+        app:icon="@drawable/apply"
+        app:iconGravity="textStart"
+        app:layout_constraintTop_toBottomOf="@id/darkmood_ms"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/logout_mbtn"
+       android:layout_marginEnd="8dp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/calculate_mbtn"
-        android:layout_width="match_parent"
+        android:id="@+id/logout_mbtn"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="18dp"
         android:text="Logout"
         app:cornerRadius="16dp"
         app:icon="@drawable/baseline_logout_24"
-        app:iconGravity="textStart"/>
+        app:iconGravity="textStart"
+        app:layout_constraintTop_toBottomOf="@id/darkmood_ms"
+        app:layout_constraintStart_toEndOf="@id/apply_changes_mbtn"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
-
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
