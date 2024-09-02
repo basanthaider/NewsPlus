@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".ui.fragments.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,4 +18,60 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp" />
 
-</FrameLayout>
+        <TextView
+            android:paddingHorizontal="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingVertical="16dp"
+            android:text="choose Country"/>
+
+        <RadioGroup
+            android:id="@+id/rb_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/us_rb">
+
+            <RadioButton
+                android:id="@+id/us_rb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="United states" />
+
+            <RadioButton
+                android:id="@+id/uk_rb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="United Kingdom" />
+
+            <RadioButton
+                android:id="@+id/eg_rb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Egypty" />
+
+        </RadioGroup>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/round_tip_ms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:padding="18dp"
+            android:text="Dark mood"
+            app:thumbIcon="@drawable/dark_mode"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/calculate_mbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:text="Logout"
+        app:cornerRadius="16dp"
+        app:icon="@drawable/baseline_logout_24"
+        app:iconGravity="textStart"/>
+
+
+
+
+    </LinearLayout>
