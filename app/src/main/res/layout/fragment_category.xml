@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:navGraph="@navigation/news_nav_graph"
-        app:defaultNavHost="true"
-        />
+        app:defaultNavHost="true" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
