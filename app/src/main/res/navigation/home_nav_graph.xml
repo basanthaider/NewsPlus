@@ -9,7 +9,11 @@
         android:id="@+id/home"
         android:name="com.example.newsapp.ui.fragments.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_home_to_headlinesFragment"
+            app:destination="@id/headlinesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fav"
         android:name="com.example.newsapp.ui.fragments.FavoritesFragment"
