@@ -90,7 +90,7 @@
         android:id="@+id/login_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Logout"
+        android:text="Login"
         app:cornerRadius="16dp"
         app:icon="@drawable/login"
         app:iconGravity="textStart"
