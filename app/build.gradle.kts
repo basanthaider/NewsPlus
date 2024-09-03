@@ -1,6 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    //google services
+    id("com.google.gms.google-services")
+    //Ksp
+    id("com.google.devtools.ksp")
+
 }
 
 android {
@@ -58,4 +63,19 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.12.0")
     //swipe to refresh
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    //Room db
+    implementation("androidx.room:room-runtime:2.6.1")
+    //Firebase Bom
+    implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
+    //Firestore
+    implementation("com.google.firebase:firebase-firestore")
+    //Ksp
+    ksp("androidx.room:room-compiler:2.6.1")
+
+
+
+
+
+
+
 }
