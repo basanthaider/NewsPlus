@@ -76,12 +76,12 @@
             android:id="@+id/darkmood_ms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
             android:padding="18dp"
             android:text="Dark mood"
             app:thumbIcon="@drawable/dark_mode"
             app:layout_constraintTop_toBottomOf="@id/rb_group"
-            android:layout_marginBottom="18dp"/>
+            android:layout_marginBottom="18dp" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/apply_changes_mbtn"
         android:layout_width="0dp"
@@ -90,6 +90,7 @@
         app:cornerRadius="16dp"
         app:icon="@drawable/apply"
         app:iconGravity="textStart"
+        android:backgroundTint="@color/orange"
         app:layout_constraintTop_toBottomOf="@id/darkmood_ms"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/logout_mbtn"
