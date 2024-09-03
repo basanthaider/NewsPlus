@@ -51,25 +51,29 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/cardview_light_background"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:src="@drawable/share"
-            android:id="@+id/share_button"
+            android:id="@+id/share_btn"
+            app:backgroundTint="@android:color/transparent"
+            app:rippleColor="@android:color/transparent"
+
+
             />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/fav_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/favorite"
+            android:src="@drawable/favorite_border"
             app:fabSize="normal"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:backgroundTint="@color/cardview_light_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/imageview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:backgroundTint="@android:color/transparent"
+            app:rippleColor="@android:color/transparent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
