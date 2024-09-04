@@ -7,17 +7,15 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface NewsCallable {
-    @GET("/v2/top-headlines")
-   suspend fun getNews(
-        @Query("country")
-        countryCode: String = "us",
-        @Query("page")
-        pageNumber: Int = 1,
-        @Query("apiKey")
-        apiKey: String = API_KEY
+    @GET("v2/top-headlines?country=us&apiKey=$API_KEY")
+    fun getNews(
+//        @Query("country")
+//        countryCode: String = "us",
+        @Query("category")
+        category: String,
+//        @Query("page")
+//        pageNumber: Int = 1,
+//        @Query("apiKey")
+//        apiKey: String = API_KEY
     ): Call<NewsResponse>
-
-
-
-
 }
