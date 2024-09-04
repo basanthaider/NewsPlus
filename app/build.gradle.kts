@@ -5,7 +5,7 @@ plugins {
     id("com.google.gms.google-services")
     //Ksp
     id("com.google.devtools.ksp")
-
+    id ("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -71,11 +71,8 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     //Ksp
     ksp("androidx.room:room-compiler:2.6.1")
-
-
-
-
-
-
-
+//  Navigation Fragment library
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.6.0")
+    // Navigation UI library
+    implementation ("androidx.navigation:navigation-ui-ktx:2.6.0")
 }
