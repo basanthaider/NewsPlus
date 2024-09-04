@@ -19,15 +19,15 @@ class SettingsFragment : Fragment() {
     ): View? {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
         sharedPreferences = requireContext().getSharedPreferences("MyPrefs", 0)
-        val checkedRB = binding.rbGroup.checkedRadioButtonId
-        val chosenCountry = when (checkedRB) {
+       val checkedRB = binding.rbGroup.checkedRadioButtonId
+        val chosenCountry = when(checkedRB){
             R.id.us_rb -> "us"
-            R.id.uk_rb -> "uk"
+            R.id.uk_rb-> "uk"
             R.id.eg_rb -> "eg"
             R.id.ae_rb -> "ae"
             else -> "ca"
         }
-        val savedCountry = sharedPreferences.getString("chosenCountry", chosenCountry)
+        val savedCountry = sharedPreferences.getString("chosenCountry",chosenCountry)
 
         binding.applyChangesBtn.setOnClickListener {
             val selectedCountry = binding.rbGroup.checkedRadioButtonId.toString()
@@ -36,11 +36,11 @@ class SettingsFragment : Fragment() {
 
         return binding.root
     }
-
     private fun saveCountryPreference(chosenCountry: String) {
         with(sharedPreferences.edit()) {
             putString("chosenCountry", chosenCountry)
             apply()
         }
     }
+
 }

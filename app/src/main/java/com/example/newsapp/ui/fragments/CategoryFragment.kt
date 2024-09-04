@@ -1,15 +1,17 @@
 package com.example.newsapp.ui.fragments
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.contentcapture.ContentCaptureSession
+import android.widget.AdapterView
 import android.widget.GridView
+import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import com.example.newsapp.R
 import com.example.newsapp.adapters.CategoriesAdapter
+import com.example.newsapp.databinding.FragmentCategoryBinding
 
 
 class CategoryFragment() : Fragment() {
@@ -18,11 +20,16 @@ class CategoryFragment() : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_category, container, false)
-        gridView = view.findViewById(R.id.categoriesGridView)
+    ): View {
+        val binding = FragmentCategoryBinding.inflate(inflater, container, false)
+        val gridView = binding.categoriesGridView
         val adapter = CategoriesAdapter(requireContext())
         gridView.adapter = adapter
-        return view
+        binding.categoriesGridView.onItemClickListener = AdapterView.OnItemClickListener { _, view, _, _ ->
+            val category = view.findViewById<TextView>(R.id.categoryTV).text.toString()
+            val action = CategoryFragmentDirections.actionHomeToHeadlinesFragment(category)
+            findNavController().navigate(action)
+        }
+        return binding.root
     }
 }
