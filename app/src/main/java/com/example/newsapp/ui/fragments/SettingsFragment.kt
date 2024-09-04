@@ -1,45 +1,46 @@
 package com.example.newsapp.ui.fragments
 
-import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.newsapp.R
 import com.example.newsapp.databinding.FragmentSettingsBinding
-import com.example.newsapp.ui.LoginActivity
-import com.google.firebase.auth.FirebaseAuth
+
 
 class SettingsFragment : Fragment() {
-
-    private var _binding: FragmentSettingsBinding? = null
-    private val binding get() = _binding!!
-
+    private lateinit var binding: FragmentSettingsBinding
+    private lateinit var sharedPreferences: SharedPreferences
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        sharedPreferences = requireContext().getSharedPreferences("MyPrefs", 0)
+       val checkedRB = binding.rbGroup.checkedRadioButtonId
+        val chosenCountry = when(checkedRB){
+            R.id.us_rb -> "us"
+            R.id.uk_rb-> "uk"
+            R.id.eg_rb -> "eg"
+            R.id.ae_rb -> "ae"
+            else -> "ca"
+        }
+        val savedCountry = sharedPreferences.getString("chosenCountry",chosenCountry)
 
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // Handle logout button click
-        binding.logoutBtn.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-
-            val intent = Intent(requireActivity(), LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-
-            requireActivity().finish()
+        binding.applyChangesBtn.setOnClickListener {
+            val selectedCountry = binding.rbGroup.checkedRadioButtonId.toString()
+            saveCountryPreference(selectedCountry)
         }
 
-        // Additional settings handling logic can be placed here
+        return binding.root
     }
-
+    private fun saveCountryPreference(chosenCountry: String) {
+        with(sharedPreferences.edit()) {
+            putString("chosenCountry", chosenCountry)
+            apply()
+        }
+    }
 
 }

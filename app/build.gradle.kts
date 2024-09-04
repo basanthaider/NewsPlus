@@ -1,13 +1,17 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    //google services
     id("com.google.gms.google-services")
+    //Ksp
+    id("com.google.devtools.ksp")
+    id ("androidx.navigation.safeargs.kotlin")
 }
 
 android {
     namespace = "com.example.newsapp"
     compileSdk = 34
-    buildFeatures {
+    buildFeatures{
         viewBinding = true
     }
 
@@ -49,17 +53,26 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.5.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.5.0")
     // Navigation Components
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.5")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.7.5")
     // Glide
-    implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
     //swipe to refresh
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-    //firebase
+    //Room db
+    implementation("androidx.room:room-runtime:2.6.1")
+    //Firebase Bom
     implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
-    implementation("com.google.firebase:firebase-auth")
+    //Firestore
+    implementation("com.google.firebase:firebase-firestore")
+    //Ksp
+    ksp("androidx.room:room-compiler:2.6.1")
+//  Navigation Fragment library
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.6.0")
+    // Navigation UI library
+    implementation ("androidx.navigation:navigation-ui-ktx:2.6.0")
 }
