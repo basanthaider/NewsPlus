@@ -12,20 +12,22 @@ import com.example.newsapp.R
 class CategoriesAdapter(private val context: Context) : BaseAdapter() {
 
     private val images = intArrayOf(
+        R.drawable.general,
         R.drawable.health,
-        R.drawable.finance,
+        R.drawable.business,
         R.drawable.technology,
         R.drawable.sports,
-        R.drawable.arts,
-        R.drawable.tourism,
+        R.drawable.entertainment,
+        R.drawable.science,
     )
     private val categories = arrayOf(
+        "General",
         "Health",
-        "Finance",
+        "Business",
         "Technology",
         "Sports",
-        "Arts",
-        "Tourism"
+        "Entertainment",
+        "Science"
     )
 
     override fun getCount() = images.size

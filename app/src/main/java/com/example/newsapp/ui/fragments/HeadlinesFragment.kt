@@ -15,6 +15,7 @@ import com.example.newsapp.api.NewsCallable
 import com.example.newsapp.databinding.FragmentHeadlinesBinding
 import com.example.newsapp.models.Article
 import com.example.newsapp.models.NewsResponse
+import com.example.newsapp.util.Constants.Companion.API_KEY
 import com.example.newsapp.util.Constants.Companion.BASE_URL
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,12 +33,14 @@ class HeadlinesFragment : Fragment() {
         val binding = FragmentHeadlinesBinding.inflate(inflater, container, false)
         val args = HeadlinesFragmentArgs.fromBundle(requireArguments())
         val category = args.categoryName
-        binding.paginationProgressBar.isVisible=true
-        loadNews(binding, requireContext(), category)
+        binding.progressBar.isVisible = true
+//        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+//        val countryCode = sharedPreferences.getString("chosenCountry", "us") ?: "us"
+        loadNews(binding, requireContext(), category, "us")
         return binding.root
     }
 
-    private fun loadNews(binding: FragmentHeadlinesBinding, context: Context, category: String) {
+    private fun loadNews(binding: FragmentHeadlinesBinding, context: Context, category: String, country: String) {
         val retrofit = Retrofit
             .Builder()
             .baseUrl(BASE_URL)
@@ -45,17 +48,17 @@ class HeadlinesFragment : Fragment() {
             .build()
 
         val callable = retrofit.create(NewsCallable::class.java)
-        callable.getNews(category).enqueue(object : Callback<NewsResponse> {
+        callable.getNews(category, country).enqueue(object : Callback<NewsResponse> {
             override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
                 val news = response.body()?.articles
                 Log.d("trace", "Response: $news")
                 showNews(binding, context as Activity, news as ArrayList<Article>)
-                binding.paginationProgressBar.isVisible = false
+                binding.progressBar.isVisible = false
             }
 
             override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
                 Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show()
-                binding.paginationProgressBar.isVisible = false
+                binding.progressBar.isVisible = false
             }
 
         })
