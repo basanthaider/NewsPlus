@@ -1,6 +1,7 @@
 package com.example.newsapp.adapters
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,7 +16,7 @@ import com.example.newsapp.R
 import com.example.newsapp.databinding.ArticleListItemBinding
 import com.example.newsapp.models.Article
 
-class HeadlinesAdapter(val a: Activity, val articles: ArrayList<Article>) :
+class HeadlinesAdapter(val activity: Activity, val articles: ArrayList<Article>) :
     Adapter<HeadlinesAdapter.HeadlinesViewHolder>() {
 
     class HeadlinesViewHolder(val binding: ArticleListItemBinding) : ViewHolder(binding.root)
@@ -47,17 +48,15 @@ class HeadlinesAdapter(val a: Activity, val articles: ArrayList<Article>) :
 
         holder.binding.articleContainer.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW, url.toUri())
-            a.startActivity(i)
+            activity.startActivity(i)
         }
         holder.binding.shareBtn.setOnClickListener {
             ShareCompat
-                .IntentBuilder(a)
+                .IntentBuilder(activity)
                 .setType("text/plain")
                 .setChooserTitle("Share this article")
                 .setText(url)
                 .startChooser()
-
-
         }
         holder.binding.favBtn.setOnClickListener {
         }

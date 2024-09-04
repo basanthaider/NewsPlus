@@ -9,10 +9,14 @@
         android:id="@+id/home"
         android:name="com.example.newsapp.ui.fragments.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" >
+        tools:layout="@layout/fragment_category">
         <action
             android:id="@+id/action_home_to_headlinesFragment"
-            app:destination="@id/headlinesFragment" />
+            app:destination="@id/headlinesFragment">
+            <argument
+                android:name="categoryName"
+                app:argType="string" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/fav"
@@ -32,5 +36,9 @@
     <fragment
         android:id="@+id/headlinesFragment"
         android:name="com.example.newsapp.ui.fragments.HeadlinesFragment"
-        android:label="HeadlinesFragment" />
+        android:label="HeadlinesFragment">
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
+    </fragment>
 </navigation>
