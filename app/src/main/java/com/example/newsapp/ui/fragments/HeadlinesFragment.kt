@@ -15,7 +15,6 @@ import com.example.newsapp.api.NewsCallable
 import com.example.newsapp.databinding.FragmentHeadlinesBinding
 import com.example.newsapp.models.Article
 import com.example.newsapp.models.NewsResponse
-import com.example.newsapp.util.Constants.Companion.API_KEY
 import com.example.newsapp.util.Constants.Companion.BASE_URL
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,9 +33,9 @@ class HeadlinesFragment : Fragment() {
         val args = HeadlinesFragmentArgs.fromBundle(requireArguments())
         val category = args.categoryName
         binding.progressBar.isVisible = true
-//        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-//        val countryCode = sharedPreferences.getString("chosenCountry", "us") ?: "us"
-        loadNews(binding, requireContext(), category, "us")
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val countryCode = sharedPreferences.getString("chosenCountry", "DEFAULT") ?: "us"
+        loadNews(binding, requireContext(), category, countryCode)
         return binding.root
     }
 
@@ -46,7 +45,7 @@ class HeadlinesFragment : Fragment() {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
+        Log.d("trace", "CountryCode: $country")
         val callable = retrofit.create(NewsCallable::class.java)
         callable.getNews(category, country).enqueue(object : Callback<NewsResponse> {
             override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
