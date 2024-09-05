@@ -3,9 +3,6 @@ package com.example.newsapp.ui
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.newsapp.R
@@ -22,7 +19,25 @@ class HomeActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         val bottomNavigationView = binding.bottomNavigationView
         bottomNavigationView.setupWithNavController(navController)
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    navController.navigate(R.id.home)
+                    true
+                }
 
-        val navCon = findNavController(R.id.nav_host_fragment)
+                R.id.fav -> {
+                    navController.navigate(R.id.fav)
+                    true
+                }
+
+                R.id.settings -> {
+                    navController.navigate(R.id.settings)
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 }
