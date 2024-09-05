@@ -17,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater) // Use the lateinit binding here
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         auth = Firebase.auth
 
         enableEdgeToEdge()
@@ -40,7 +40,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.forgetPassword.setOnClickListener {
-            // Handle forgot password action
+            val intent = Intent(this, ResetPasswordActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -66,27 +67,21 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "Please verify your email", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    // Handle specific exceptions for better feedback
                     val exception = task.exception
                     val errorMessage = when {
                         exception is com.google.firebase.auth.FirebaseAuthInvalidUserException -> {
-                            // Handle invalid user (e.g., user does not exist)
                             "No account found with this email."
                         }
                         exception is com.google.firebase.auth.FirebaseAuthInvalidCredentialsException -> {
-                            // Handle invalid credentials (e.g., incorrect password)
                             "Incorrect Email or password.Please try again."
                         }
                         exception is com.google.firebase.auth.FirebaseAuthUserCollisionException -> {
-                            // Handle user collision (e.g., email already in use)
                             "An account with this email already exists."
                         }
                         exception is com.google.firebase.auth.FirebaseAuthEmailException -> {
-                            // Handle email errors (e.g., invalid email format)
                             "Invalid email format."
                         }
                         else -> {
-                            // Handle other errors
                             "Authentication failed: ${exception?.localizedMessage ?: "Unknown error"}"
                         }
                     }
