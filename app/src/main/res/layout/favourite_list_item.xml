@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/article_container"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
+    android:layout_height="200dp"
     android:layout_marginHorizontal="16dp"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
@@ -19,7 +19,7 @@
         <ImageView
             android:id="@+id/imageview"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="@id/parent"
             tools:src="@tools:sample/backgrounds/scenic[9]" />
@@ -49,32 +49,32 @@
             tools:text="Description" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/share_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/fav_btn"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:src="@drawable/share"
-            app:backgroundTint="@android:color/transparent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/share_btn"
+            app:backgroundTint="@color/orange"
             app:rippleColor="@android:color/transparent"
-
-
-            />
-
+            android:layout_margin="4dp"/>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/un_fav_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/favorite"
-            app:backgroundTint="@android:color/transparent"
+            android:src="@drawable/favorite_border"
             app:fabSize="normal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="@id/imageview"
             app:layout_constraintEnd_toEndOf="parent"
-            app:rippleColor="@android:color/transparent" />
+            app:layout_constraintTop_toBottomOf="@id/share_btn"
+            app:backgroundTint="@color/orange"
+            app:rippleColor="@android:color/transparent"
+            android:layout_margin="4dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
