@@ -17,22 +17,24 @@
                 android:name="categoryName"
                 app:argType="string" />
         </action>
+        <action
+            android:id="@+id/action_home_to_fav"
+            app:destination="@id/fav" />
     </fragment>
     <fragment
         android:id="@+id/fav"
         android:name="com.example.newsapp.ui.fragments.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_fav_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
     <fragment
         android:id="@+id/settings"
         android:name="com.example.newsapp.ui.fragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
-    <fragment
-        android:id="@+id/articleFragment"
-        android:name="com.example.newsapp.ui.fragments.ArticleFragment"
-        android:label="fragment_article"
-        tools:layout="@layout/fragment_article" />
     <fragment
         android:id="@+id/headlinesFragment"
         android:name="com.example.newsapp.ui.fragments.HeadlinesFragment"
@@ -40,5 +42,8 @@
         <argument
             android:name="categoryName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_headlinesFragment_to_settings"
+            app:destination="@id/settings" />
     </fragment>
 </navigation>
