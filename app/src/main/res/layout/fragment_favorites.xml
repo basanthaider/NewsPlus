@@ -10,12 +10,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-black"
         android:text="Favorites"
         android:textColor="@color/meintGreen"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerFavs"
@@ -39,12 +40,11 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:indeterminate="true"
-        android:indeterminateTint="@color/orange"
+        android:indeterminateTint="@color/lightMeintGreen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
-
 
 </FrameLayout>

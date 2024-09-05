@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="sans-serif-black"
         android:text="Settings."
         android:textColor="@color/meintGreen"
@@ -35,7 +35,7 @@
         android:id="@+id/rb_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checkedButton="@id/ca_rb"
+        android:checkedButton="@id/us_rb"
         app:layout_constraintTop_toBottomOf="@id/country_tv">
 
         <RadioButton
@@ -86,14 +86,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/meintGreen"
         android:text="Apply settings"
         app:cornerRadius="16dp"
         app:icon="@drawable/apply"
         app:iconGravity="textStart"
         app:layout_constraintEnd_toStartOf="@id/logout_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/darkmood_ms" />
+        app:layout_constraintTop_toBottomOf="@id/darkmood_ms"
+        android:textColor="@color/white"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/logout_btn"
@@ -103,9 +104,11 @@
         app:cornerRadius="16dp"
         app:icon="@drawable/baseline_logout_24"
         app:iconGravity="textStart"
+        android:backgroundTint="@color/meintGreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/apply_changes_btn"
-        app:layout_constraintTop_toBottomOf="@id/darkmood_ms" />
+        app:layout_constraintTop_toBottomOf="@id/darkmood_ms"
+        android:textColor="@color/white"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
