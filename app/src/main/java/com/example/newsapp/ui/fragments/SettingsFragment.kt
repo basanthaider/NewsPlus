@@ -22,8 +22,18 @@ class SettingsFragment : Fragment() {
     ): View {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
         sharedPreferences = requireContext().getSharedPreferences("MyPrefs", 0)
-        val checkedRB = binding.rbGroup.checkedRadioButtonId
-        var chosenCountry: String = "us"
+        binding.rbGroup.checkedRadioButtonId
+        val chosenCountryFromPref : String = sharedPreferences.getString("chosenCountry", "us").toString()
+        var chosenCountry: String
+        Log.d("trace", "Chosen country: $chosenCountryFromPref")
+        when (chosenCountryFromPref) {
+            "us" -> binding.rbGroup.check(R.id.us_rb)
+            "uk" -> binding.rbGroup.check(R.id.uk_rb)
+            "eg" -> binding.rbGroup.check(R.id.eg_rb)
+            "ae" -> binding.rbGroup.check(R.id.ae_rb)
+            else -> binding.rbGroup.check(R.id.ca_rb)
+        }
+        binding.rbGroup.check(R.id.ca_rb)
         binding.rbGroup.setOnCheckedChangeListener { _, checkedId ->
             val radioButton = binding.root.findViewById<RadioButton>(checkedId)
             chosenCountry = when (radioButton.text.toString()) {
@@ -33,13 +43,10 @@ class SettingsFragment : Fragment() {
                 getString(R.string.united_arab_emirates) -> "ae"
                 else -> "ca"
             }
+//            Log.d("trace", "Chosen country: $chosenCountry")
+            saveCountryPreference(chosenCountry)
+            Toast.makeText(context, "Country saved successfully!! ", Toast.LENGTH_SHORT).show()
         }
-        binding.applyChangesBtn.setOnClickListener {
-             saveCountryPreference(chosenCountry)
-            Toast.makeText(context, "Country:$chosenCountry is save successfully!! ", Toast.LENGTH_SHORT).show()
-
-        }
-
 
         return binding.root
     }
