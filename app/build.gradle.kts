@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
+    //auth
+
     //google services
     id("com.google.gms.google-services")
     //Ksp
@@ -76,4 +79,7 @@ dependencies {
     implementation ("androidx.navigation:navigation-fragment-ktx:2.6.0")
     // Navigation UI library
     implementation ("androidx.navigation:navigation-ui-ktx:2.6.0")
+
+    implementation("com.google.firebase:firebase-bom:33.2.0")
+    implementation("com.google.firebase:firebase-auth")
 }
