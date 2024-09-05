@@ -1,8 +1,6 @@
 package com.example.newsapp.adapters
 
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -47,7 +45,7 @@ class FavoritesAdapter(
             description.text = article.description
             Glide.with(imageview.context)
                 .load(article.imgUrl)
-                .error(R.drawable.broken_image)
+                .error(R.drawable.error_img)
                 .transition(DrawableTransitionOptions.withCrossFade(1000))
                 .into(imageview)
 
