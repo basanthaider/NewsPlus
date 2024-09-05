@@ -1,7 +1,6 @@
 package com.example.newsapp.adapters
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -32,19 +31,19 @@ class HeadlinesAdapter(val activity: Activity, val articles: ArrayList<Article>)
     }
 
     override fun onBindViewHolder(holder: HeadlinesViewHolder, position: Int) {
-        Log.d("trace", "Link:${articles[position].urlToImage}")
+        Log.d("trace", "Link:${articles[position].imgUrl}")
 
         holder.binding.title.text = articles[position].title
 
         holder.binding.description.text = articles[position].description
         Glide
             .with(holder.binding.imageview.context)
-            .load(articles[position].urlToImage)
+            .load(articles[position].imgUrl)
             .error(R.drawable.broken_image)
             .transition(DrawableTransitionOptions.withCrossFade(1000))
             .into(holder.binding.imageview)
 
-        val url = articles[position].url
+        val url = articles[position].link
 
         holder.binding.articleContainer.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW, url.toUri())
