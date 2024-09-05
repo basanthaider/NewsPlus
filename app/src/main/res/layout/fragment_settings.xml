@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingTop="16dp"
     android:paddingHorizontal="16dp"
     tools:context=".ui.fragments.SettingsFragment">
 
@@ -13,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
         android:text="Settings"
         android:textColor="@color/meintGreen"
@@ -36,7 +37,6 @@
         android:id="@+id/rb_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checkedButton="@id/us_rb"
         app:layout_constraintTop_toBottomOf="@id/country_tv">
 
         <RadioButton
@@ -72,30 +72,6 @@
 
     </RadioGroup>
 
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/darkmood_ms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
-        android:padding="18dp"
-        android:text="Dark mood"
-        app:layout_constraintTop_toBottomOf="@id/rb_group"
-        app:thumbIcon="@drawable/dark_mode" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/apply_changes_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/meintGreen"
-        android:text="Apply settings"
-        app:cornerRadius="16dp"
-        app:icon="@drawable/apply"
-        app:iconGravity="textStart"
-        app:layout_constraintEnd_toStartOf="@id/logout_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/darkmood_ms"
-        android:textColor="@color/white"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/logout_btn"
@@ -103,12 +79,13 @@
         android:layout_height="wrap_content"
         android:text="Logout"
         app:cornerRadius="16dp"
+        android:layout_marginBottom="32dp"
         app:icon="@drawable/baseline_logout_24"
         app:iconGravity="textStart"
         android:backgroundTint="@color/meintGreen"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/apply_changes_btn"
-        app:layout_constraintTop_toBottomOf="@id/darkmood_ms"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:textColor="@color/white"/>
 
 
