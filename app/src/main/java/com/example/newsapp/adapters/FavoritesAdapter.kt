@@ -1,9 +1,12 @@
 package com.example.newsapp.adapters
 
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.FragmentActivity
@@ -43,13 +46,13 @@ class FavoritesAdapter(
             title.text = article.title
             description.text = article.description
             Glide.with(imageview.context)
-                .load(article.urlToImage)
+                .load(article.imgUrl)
                 .error(R.drawable.broken_image)
                 .transition(DrawableTransitionOptions.withCrossFade(1000))
                 .into(imageview)
 
             articleContainer.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, article.url.toUri())
+                val intent = Intent(Intent.ACTION_VIEW, article.link.toUri())
                 activity.startActivity(intent)
             }
 
@@ -57,13 +60,14 @@ class FavoritesAdapter(
                 ShareCompat.IntentBuilder(activity)
                     .setType("text/plain")
                     .setChooserTitle("Share this article")
-                    .setText(article.url)
+                    .setText(article.link)
                     .startChooser()
             }
 
             favBtn.setImageResource(R.drawable.favorite)  // Always show as favorited
             favBtn.setOnClickListener {
                 removeFromFavorites(article)
+                Toast.makeText(activity, "Headline removed :(", Toast.LENGTH_SHORT).show()
             }
         }
     }

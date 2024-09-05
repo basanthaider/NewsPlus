@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -39,19 +40,19 @@ class HeadlinesAdapter(private val activity: Activity, private val articles: Arr
 
     override fun onBindViewHolder(holder: HeadlinesViewHolder, position: Int) {
         val article = articles[position]
-        val articleId = article.id ?: generateIdFromUrl(article.url)
+        val articleId = article.id ?: generateIdFromUrl(article.link)
         val userId = auth.currentUser?.uid
 
         holder.binding.title.text = article.title
         holder.binding.description.text = article.description
         Glide
             .with(holder.binding.imageview.context)
-            .load(article.urlToImage)
-            .error(R.drawable.broken_image)
+            .load(article.imgUrl)
+            .error(R.drawable.error_img)
             .transition(DrawableTransitionOptions.withCrossFade(1000))
             .into(holder.binding.imageview)
 
-        val url = article.url
+        val url = article.link
 
         // Set initial favorite icon based on the current state
         userId?.let {
@@ -107,6 +108,7 @@ class HeadlinesAdapter(private val activity: Activity, private val articles: Arr
                         // Article is not favorited, add it
                         addArticleToFavorites(article, articleId)
                         toggleFavoriteIcon(holder.binding.favBtn, true)
+                        Toast.makeText(activity, "Headline added to favourites :) ", Toast.LENGTH_SHORT).show()
                     }
                 }.addOnFailureListener { e ->
                     Log.e("Firestore", "Error checking favorite status", e)
@@ -128,8 +130,8 @@ class HeadlinesAdapter(private val activity: Activity, private val articles: Arr
             articleRef.set(
                 mapOf(
                     "title" to article.title,
-                    "url" to article.url,
-                    "urlToImage" to article.urlToImage,
+                    "url" to article.link,
+                    "urlToImage" to article.imgUrl,
                     "description" to article.description,
                     "id" to articleId
                 )

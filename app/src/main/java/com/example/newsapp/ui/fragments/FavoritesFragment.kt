@@ -60,8 +60,8 @@ class FavoritesFragment : Fragment() {
                             id = document.id,
                             title = document.getString("title") ?: "",
                             description = document.getString("description") ?: "",
-                            url = document.getString("url") ?: "",
-                            urlToImage = document.getString("urlToImage") ?: ""
+                            link = document.getString("url") ?: "",
+                            imgUrl = document.getString("urlToImage") ?: ""
                         )
                         articles.add(article)
                     }
