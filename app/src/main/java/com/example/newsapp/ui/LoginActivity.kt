@@ -61,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     if (auth.currentUser!!.isEmailVerified) {
                         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+
                         startActivity(Intent(this, HomeActivity::class.java))
                         finish()
                     } else {
@@ -72,15 +73,19 @@ class LoginActivity : AppCompatActivity() {
                         exception is com.google.firebase.auth.FirebaseAuthInvalidUserException -> {
                             "No account found with this email."
                         }
+
                         exception is com.google.firebase.auth.FirebaseAuthInvalidCredentialsException -> {
                             "Incorrect Email or password.Please try again."
                         }
+
                         exception is com.google.firebase.auth.FirebaseAuthUserCollisionException -> {
                             "An account with this email already exists."
                         }
+
                         exception is com.google.firebase.auth.FirebaseAuthEmailException -> {
                             "Invalid email format."
                         }
+
                         else -> {
                             "Authentication failed: ${exception?.localizedMessage ?: "Unknown error"}"
                         }
@@ -100,7 +105,11 @@ class LoginActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Password reset email sent", Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(this, "Failed to send password reset email: ${task.exception?.localizedMessage}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "Failed to send password reset email: ${task.exception?.localizedMessage}",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
         }

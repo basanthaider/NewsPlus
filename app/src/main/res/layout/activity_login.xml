@@ -20,19 +20,32 @@
         android:textColor="@color/meintGreen"
         android:textStyle="bold"
         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="news at your finger tips!"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toBottomOf="@id/create"
+        android:textSize="18dp"
+        android:id="@+id/subheader"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/meintGreen"
+        />
 
     <EditText
         android:id="@+id/email"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="160dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="20dp"
         android:background="@android:drawable/edit_text"
         android:hint="Email"
         android:padding="20dp"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:textColorHint="@color/lightMeintGreen"
+        android:textColor="@color/meintGreen"
         />
     <EditText
         android:id="@+id/pass"
@@ -45,8 +58,9 @@
         android:padding="20dp"
         app:layout_constraintTop_toBottomOf="@id/email"
         android:textColorHint="@color/lightMeintGreen"
+        android:textColor="@color/meintGreen"
         />
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -59,6 +73,8 @@
         app:layout_constraintTop_toBottomOf="@+id/pass"
         android:backgroundTint="@color/meintGreen"
         android:textColor="@color/white"
+        app:icon="@drawable/login"
+        app:iconGravity="textEnd"
         />
     <Button
         android:backgroundTint="@color/lightMeintGreen"
