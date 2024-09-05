@@ -1,51 +1,77 @@
 package com.example.newsapp.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.newsapp.R
+import com.example.newsapp.databinding.CategoriesListItemBinding
+import com.example.newsapp.ui.fragments.CategoryFragment
+import androidx.navigation.fragment.findNavController
+import com.example.newsapp.ui.fragments.CategoryFragmentDirections
 
-class CategoriesAdapter(private val context: Context) : BaseAdapter() {
+class CategoriesAdapter(
+    private val fragment: CategoryFragment // Use the fragment directly for navigation
+) : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
     private val images = intArrayOf(
-        R.drawable.general,
         R.drawable.health,
+        R.drawable.education,
         R.drawable.business,
-        R.drawable.technology,
-        R.drawable.sports,
+        R.drawable.politics,
         R.drawable.entertainment,
+        R.drawable.enviroment,
+        R.drawable.food,
+        R.drawable.crime,
         R.drawable.science,
+        R.drawable.sports,
+        R.drawable.tourism,
+        R.drawable.domestic,
+        R.drawable.technology,
+        R.drawable.top,
+        R.drawable.world,
+        R.drawable.others,
     )
+
     private val categories = arrayOf(
-        "General",
         "Health",
+        "Education",
         "Business",
-        "Technology",
-        "Sports",
+        "Politics",
         "Entertainment",
-        "Science"
+        "Environment",
+        "Food",
+        "Crime",
+        "Science",
+        "Sports",
+        "Tourism",
+        "Domestic",
+        "Technology",
+        "Top",
+        "World",
+        "Other",
     )
 
-    override fun getCount() = images.size
+    inner class CategoryViewHolder(val binding: CategoriesListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(category: String, image: Int) {
+            binding.categoryTV.text = category
+            Glide.with(binding.categoryImage.context).load(image).into(binding.categoryImage)
 
-    override fun getItem(position: Int) = images[position]
-
-    override fun getItemId(position: Int) = position.toLong()
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view: View =
-            convertView ?: LayoutInflater.from(context).inflate(R.layout.categories_list_item, parent, false)
-
-        val imageView = view.findViewById<ImageView>(R.id.categoryImage)
-        val categoryTextView = view.findViewById<TextView>(R.id.categoryTV)
-
-        imageView.setImageResource(images[position])
-        categoryTextView.text = categories[position]
-
-        return view
+            binding.newsItemContainer.setOnClickListener {
+                val action = CategoryFragmentDirections.actionHomeToHeadlinesFragment(category)
+                fragment.findNavController().navigate(action)
+            }
+        }
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+        val binding = CategoriesListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CategoryViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+        holder.bind(categories[position], images[position])
+    }
+
+    override fun getItemCount() = images.size
 }

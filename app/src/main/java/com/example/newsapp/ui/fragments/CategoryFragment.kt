@@ -1,35 +1,29 @@
 package com.example.newsapp.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.GridView
-import android.widget.TextView
-import androidx.navigation.fragment.findNavController
-import com.example.newsapp.R
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.newsapp.adapters.CategoriesAdapter
 import com.example.newsapp.databinding.FragmentCategoryBinding
 
+class CategoryFragment : Fragment() {
 
-class CategoryFragment() : Fragment() {
-    private lateinit var gridView: GridView
+    private lateinit var binding: FragmentCategoryBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentCategoryBinding.inflate(inflater, container, false)
-        val gridView = binding.categoriesGridView
-        val adapter = CategoriesAdapter(requireContext())
-        gridView.adapter = adapter
-        binding.categoriesGridView.onItemClickListener = AdapterView.OnItemClickListener { _, view, _, _ ->
-            val category = view.findViewById<TextView>(R.id.categoryTV).text.toString()
-            val action = CategoryFragmentDirections.actionHomeToHeadlinesFragment(category)
-            findNavController().navigate(action)
-        }
+        binding = FragmentCategoryBinding.inflate(inflater, container, false)
+        setupRecyclerView()
         return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        binding.categoriesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.categoriesRecyclerView.adapter = CategoriesAdapter(this) // Pass the fragment instance
     }
 }

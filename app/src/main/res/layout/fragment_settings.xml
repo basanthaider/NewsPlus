@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingHorizontal="16dp"
     tools:context=".ui.fragments.SettingsFragment">
 
     <TextView
@@ -14,7 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-black"
-        android:text="Settings."
+        android:text="Settings"
         android:textColor="@color/meintGreen"
         android:textSize="30sp"
         android:textStyle="bold"

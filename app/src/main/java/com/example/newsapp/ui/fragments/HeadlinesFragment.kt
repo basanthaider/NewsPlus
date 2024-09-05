@@ -14,7 +14,7 @@ import com.example.newsapp.adapters.HeadlinesAdapter
 import com.example.newsapp.api.NewsCallable
 import com.example.newsapp.databinding.FragmentHeadlinesBinding
 import com.example.newsapp.models.Article
-import com.example.newsapp.models.NewsResponse
+import com.example.newsapp.models.NewsModel
 import com.example.newsapp.util.Constants.Companion.BASE_URL
 import retrofit2.Call
 import retrofit2.Callback
@@ -47,15 +47,21 @@ class HeadlinesFragment : Fragment() {
             .build()
         Log.d("trace", "CountryCode: $country")
         val callable = retrofit.create(NewsCallable::class.java)
-        callable.getNews(category, country).enqueue(object : Callback<NewsResponse> {
-            override fun onResponse(call: Call<NewsResponse>, response: Response<NewsResponse>) {
-                val news = response.body()?.articles
-                Log.d("trace", "Response: $news")
-                showNews(binding, context as Activity, news as ArrayList<Article>)
-                binding.progressBar.isVisible = false
+        callable.getNews(category, country).enqueue(object : Callback<NewsModel> {
+            override fun onResponse(call: Call<NewsModel>, response: Response<NewsModel>) {
+                if (response.isSuccessful) {
+                val news = response.body()?.results
+                    Log.d("trace", "Response: $news")
+                    showNews(binding, context as Activity, news as ArrayList<Article>)
+                    binding.progressBar.isVisible = false
+                }
+                else{
+                    Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show()
+                    binding.progressBar.isVisible = false
+                }
             }
 
-            override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
+            override fun onFailure(call: Call<NewsModel>, t: Throwable) {
                 Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show()
                 binding.progressBar.isVisible = false
             }
