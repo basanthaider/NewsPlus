@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.fragments.SettingsFragment">
 
@@ -11,90 +11,89 @@
         android:id="@+id/settings_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings."
-        android:textSize="30sp"
-        android:fontFamily="sans-serif-black"
-        android:textColor="@color/meintGreen"
-        android:textStyle="bold"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Settings."
+        android:textColor="@color/meintGreen"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/country_tv"
-            android:paddingHorizontal="8dp"
+    <TextView
+        android:id="@+id/country_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="16dp"
+        android:text="Choose country news."
+        app:layout_constraintTop_toBottomOf="@id/settings_tv" />
+
+    <RadioGroup
+        android:id="@+id/rb_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/ca_rb"
+        app:layout_constraintTop_toBottomOf="@id/country_tv">
+
+        <RadioButton
+            android:id="@+id/us_rb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingVertical="16dp"
-            android:text="Choose country news."
-            app:layout_constraintTop_toBottomOf="@id/settings_tv"/>
+            android:text="@string/united_states" />
 
-        <RadioGroup
-            android:id="@+id/rb_group"
+        <RadioButton
+            android:id="@+id/uk_rb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checkedButton="@id/us_rb"
-            app:layout_constraintTop_toBottomOf="@id/country_tv">
+            android:text="@string/united_kingdom" />
 
-            <RadioButton
-                android:id="@+id/us_rb"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="United states" />
-
-            <RadioButton
-                android:id="@+id/uk_rb"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="United Kingdom" />
-
-            <RadioButton
-                android:id="@+id/eg_rb"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Egypty" />
-
-            <RadioButton
-                android:id="@+id/ae_rb"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="United Arab Emirates"/>
-
-            <RadioButton
-                android:id="@+id/ca_rb"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Canada"/>
-
-
-
-        </RadioGroup>
-
-        <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/darkmood_ms"
+        <RadioButton
+            android:id="@+id/eg_rb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="18dp"
-            android:text="Dark mood"
-            app:thumbIcon="@drawable/dark_mode"
-            app:layout_constraintTop_toBottomOf="@id/rb_group"
-            android:layout_marginBottom="18dp" />
+            android:text="@string/egypt" />
+
+        <RadioButton
+            android:id="@+id/ae_rb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/united_arab_emirates" />
+
+        <RadioButton
+            android:id="@+id/ca_rb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/canada" />
+
+
+    </RadioGroup>
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/darkmood_ms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:padding="18dp"
+        android:text="Dark mood"
+        app:layout_constraintTop_toBottomOf="@id/rb_group"
+        app:thumbIcon="@drawable/dark_mode" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/apply_changes_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/orange"
         android:text="Apply settings"
         app:cornerRadius="16dp"
         app:icon="@drawable/apply"
         app:iconGravity="textStart"
-        android:backgroundTint="@color/orange"
-        app:layout_constraintTop_toBottomOf="@id/darkmood_ms"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/logout_btn"
-       android:layout_marginEnd="8dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/darkmood_ms" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/logout_btn"
@@ -104,9 +103,9 @@
         app:cornerRadius="16dp"
         app:icon="@drawable/baseline_logout_24"
         app:iconGravity="textStart"
-        app:layout_constraintTop_toBottomOf="@id/darkmood_ms"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/apply_changes_btn"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/darkmood_ms" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
