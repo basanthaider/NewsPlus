@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".ui.RegisterActivity">
+    tools:context=".ui.RegisterActivity"
+    android:background="@color/white">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
+        android:textColorHint="@color/lightMeintGreen"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
@@ -47,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-
+        android:textColorHint="@color/lightMeintGreen"
         android:layout_marginEnd="20dp"
         android:background="@android:drawable/edit_text"
         android:hint="Email"
@@ -62,6 +64,7 @@
         android:background="@android:drawable/edit_text"
         android:hint="Password"
         android:padding="20dp"
+        android:textColorHint="@color/lightMeintGreen"
         app:layout_constraintTop_toBottomOf="@id/email" />
     <EditText
         android:id="@+id/number"
@@ -72,7 +75,9 @@
         android:background="@android:drawable/edit_text"
         android:hint="Mobile number"
         android:padding="20dp"
-        app:layout_constraintTop_toBottomOf="@id/pass" />
+        app:layout_constraintTop_toBottomOf="@id/pass"
+        android:textColorHint="@color/lightMeintGreen"
+        />
     <Button
         android:text="Register"
         android:layout_marginTop="20dp"
@@ -82,7 +87,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/number"
         android:textSize="20dp"
-        android:id="@+id/btnRegister" />
+        android:id="@+id/btnRegister"
+        android:backgroundTint="@color/meintGreen"
+        android:textColor="@color/white"
+        />
     <TextView
         android:id="@+id/aUser"
         android:layout_width="wrap_content"
@@ -90,7 +98,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:text="Already a user?"
-        android:textColor="@color/orange"
+        android:textColor="@color/lightMeintGreen"
         android:textSize="16sp"
         android:layout_gravity="center"
         android:padding="8dp"

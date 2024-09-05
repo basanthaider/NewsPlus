@@ -5,14 +5,15 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="16dp"
     android:orientation="vertical"
-    tools:context=".ui.fragments.CategoryFragment">
+    tools:context=".ui.fragments.CategoryFragment"
+    android:background="@color/white">
 
     <TextView
+        android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|start"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-black"
         android:text="Categories"
         android:textColor="@color/meintGreen"
