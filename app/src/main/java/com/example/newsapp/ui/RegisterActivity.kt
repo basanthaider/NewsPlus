@@ -2,6 +2,7 @@ package com.example.newsapp.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -31,12 +33,13 @@ class RegisterActivity : AppCompatActivity() {
         binding.btnRegister.setOnClickListener {
             val email = binding.email.text.toString()
             val pass = binding.pass.text.toString()
+
             if (email.isBlank() || pass.isBlank())
                 Toast.makeText(this, "Missing Field/s!", Toast.LENGTH_SHORT).show()
             else if (pass.length < 6)
                 Toast.makeText(this, "Short Password!", Toast.LENGTH_SHORT).show()
             else {
-                startActivity(Intent(this, LoginActivity::class.java))
+
                 binding.progress.isVisible=true
                 signUpUser(email,pass)
             }
@@ -67,11 +70,22 @@ class RegisterActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         binding.progress.isVisible = false
                         Toast.makeText(this, "Check your email", Toast.LENGTH_SHORT).show()
+
+                        startActivity(Intent(this, LoginActivity::class.java))
+                        finish()
+
                     } else {
                         Toast.makeText(this, "Failed to send verification email.", Toast.LENGTH_SHORT).show()
                     }
+                }.addOnFailureListener { exception ->
+                    binding.progress.isVisible = false
+                    Toast.makeText(this, "Error sending verification email: ${exception.message}", Toast.LENGTH_SHORT).show()
+                    Log.e("RegisterActivity", "Verification email error: ${exception.message}")
                 }
+
+
         } else {
+
             Toast.makeText(this, "No user is signed in.", Toast.LENGTH_SHORT).show()
         }
     }
