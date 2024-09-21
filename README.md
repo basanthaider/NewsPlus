@@ -19,7 +19,10 @@ is a news app built by kotlin and android SDK for android applications
 # Key features:
 - create account and save your favourite headlines
 - choose specific country news
-- choows news from varios categories 
+- choose news from varios categories
+
+# App snapshots
+![My Project Screenshot](newsPlus.jpg)
 
 
 
